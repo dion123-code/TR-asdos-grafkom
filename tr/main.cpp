@@ -16,7 +16,6 @@ float xrot = 0.0f;
 float yrot = 0.0f;
 float xdiff = 0.0f;
 float ydiff = 0.0f;
-bool mouseDown = false;
 int is_depth;
 
 
@@ -46,7 +45,7 @@ int main(int argc, char** argv)
 
 void init(void)
 {
-     GLfloat LightPosition[] = {0.0f, 0.0f, 10.0f, 0.0f};
+     GLfloat LightPosition[] = {0.0f, 100.0f, 200.0f, 1.0f};
      glShadeModel(GL_SMOOTH);
      glEnable(GL_DEPTH_TEST);
      glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -82,17 +81,30 @@ void display(void)
 	glutSwapBuffers();
 }
 
+class quad {
+    public:
+    float t1, t2, t3, t4, t5, t6;
+};
+
 void bangun()
 {
+    quad p1;
+    p1.t1 = -35;
+    p1.t2 = -25;
+    p1.t3 = 34;
+    p1.t4 =  -29;
+    p1.t5 = -45;
+    p1.t6 = -16;
      //bangun kiri
 	//p1
 	glBegin(GL_QUADS);
 	glColor3f(0,0.5,1);
-	glVertex3f(-35,-25,34);
-	glVertex3f(-35,-25,-29);
-	glVertex3f(-45,-16,-29);
-	glVertex3f(-45,-16,34);
+	glVertex3f(p1.t1,p1.t2,p1.t3);
+	glVertex3f(p1.t1,p1.t2,p1.t4);
+	glVertex3f(p1.t5,p1.t6,p1.t4);
+	glVertex3f(p1.t5,p1.t6,p1.t3);
 	glEnd();
+
 	//bagian sampingnya
 	glBegin(GL_TRIANGLES);
 	glColor3f(0.4, 0.6, 0.7);
@@ -165,6 +177,13 @@ void bangun()
 	glVertex3f(-77,10,-29);
 	glVertex3f(-60,-2,-29);
 	glVertex3f(-60,-2,34);
+	glEnd();
+	glBegin(GL_QUADS);
+	glColor3f(1,0.5,0.5);
+	glVertex3f(-77,10,34);
+	glVertex3f(-77,10,-29);
+	glVertex3f(-77,-25,-29);
+	glVertex3f(-77,-25,34);
 	glEnd();
     //bagian samping
 	glBegin(GL_QUADS);
@@ -510,6 +529,7 @@ void bangun()
 
 void atap()
 {
+
  //atap kiri
 	glBegin(GL_QUADS);
 	glColor3f(1.0,1.0,1.0);
@@ -3543,6 +3563,7 @@ void lapangan()
  glVertex3f(14.0, -25.0,-10.0);
  glVertex3f(23.0,-25.0,-10.0);
  glEnd();
+
  glBegin(GL_LINES);
  glVertex3f(0.0,-25.0,23.0);
  glVertex3f(0.0,-25.0,-18.0);
@@ -4029,23 +4050,54 @@ void keyboard(unsigned char key, int x, int y)
    display();
 }
 
+
+bool mouseDownL = false;
+bool mouseDownR = false;
+
+GLfloat eye[2];
+GLfloat at[2];
+GLfloat up[2];
+
+
 void mouse(int button, int state, int x, int y){
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
-		mouseDown = true;
+		mouseDownL = true;
 		xdiff = x - yrot;
 		ydiff = -y + xrot;
+	}else
+	mouseDownL = false;
+
+    if(button==GLUT_RIGHT_BUTTON && state==GLUT_DOWN){
+		mouseDownR = true;
+
 	}
 	else
-	mouseDown = false;
+	mouseDownR = false;
 }
 void mouseMotion(int x, int y){
-	if(mouseDown){
+	if(mouseDownL){
 		yrot = x - xdiff;
 		xrot = y + ydiff;
 		glutPostRedisplay();
 	}
+	if(mouseDownR){
+		float jarak = 0.1;
+		//eye x terlalu kanan
+		//eye y terlalu bawah
+        eye[0] = eye[0] - (x * jarak);
+		eye[1] = eye[1] - (y * jarak);
+		at[0] = at[0] - (x * jarak);
+		at[1] = at[1] - (y * jarak);
+		glutPostRedisplay();
+	}
 	glLoadIdentity();
-	gluLookAt(0.0f,0.0f,1.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
-	glRotatef(xrot,1.0f,0.0f,0.0f);
+    gluLookAt(eye[0]+15, eye[1]+10, 50, at[0], at[1], 0, 0, 1, 0);
+    glRotatef(xrot,1.0f,0.0f,0.0f);
 	glRotatef(yrot,0.0f,1.0f,0.0f);
+		eye[0] = 5;
+		eye[1] = 0;
+		at[0] = 0;
+		at[1] = 0;
 }
+
+//coba dari sini
