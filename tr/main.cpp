@@ -4044,6 +4044,9 @@ void lapangan()
  glVertex3f(-25.0,-17.0,-6.0);
  glVertex3f(-25.0,-17.0,-6.0);
  glVertex3f(-25.0,-25.0,-6.0);
+	
+ glVertex3f(30.0,30.0,55.0);
+ glVertex3f(30.0,10.0,55.0);
  glEnd();
 
 	
