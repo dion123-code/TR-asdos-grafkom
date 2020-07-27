@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <stdlib.h>
 #include <gl/glut.h>
+#include <gl/Gl.h>
 #include <stdbool.h>
 #include <math.h>
 
