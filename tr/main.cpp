@@ -22,7 +22,8 @@ int is_depth;
 void lapangan();
 void bangun();
 void atap();
-
+void bendera();
+void corn();
 
 int main(int argc, char** argv)
 {
@@ -45,7 +46,8 @@ int main(int argc, char** argv)
 
 void init(void)
 {
-     GLfloat LightPosition[] = {0.0f, 100.0f, 200.0f, 1.0f};
+     GLfloat LightPosition[] = {0.3, 0.1, 5.0, 0.0};
+//      GLfloat LightPosition[] = {0.0f, 100.0f, 200.0f, 1.0f};
      glShadeModel(GL_SMOOTH);
      glEnable(GL_DEPTH_TEST);
      glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -59,6 +61,8 @@ void init(void)
 	glPointSize(1.0);
     glLineWidth(1.0);
     glMatrixMode(GL_PROJECTION);
+    glMatrixMode(GL_MODELVIEW);
+    is_depth=1;
     glLoadIdentity();
 
 }
@@ -74,8 +78,9 @@ void display(void)
 
 	bangun();
 	atap();
-    lapangan();
-
+    	lapangan();
+	bendera();
+	corn();
 
 	glFlush ();
 	glutSwapBuffers();
@@ -3533,10 +3538,75 @@ void lapangan()
  glVertex3f(35.0, -25.0,35.0);
  glVertex3f(35.0, -20.0,35.0);
  glVertex3f(-35.0,-20.0,35.0);
+	
+//objek lapangan
+ glColor3f(1.0, 1.0,0.0);
+ glVertex3f(-25.0,-25.0,-28.0);
+ glVertex3f(-4.0, -25.0,-28.0);
+ glVertex3f(-4.0, -20.0,-25.0);
+ glVertex3f(-25.0,-20.0,-25.0);
+
+ glVertex3f(-25.0,-25.0,-22.0);
+ glVertex3f(-4.0, -25.0,-22.0);
+ glVertex3f(-4.0, -20.0,-25.0);
+ glVertex3f(-25.0,-20.0,-25.0);
+
+  glColor3f(1.0, 0.0,1.0);
+ glVertex3f(25.0,-25.0,-28.0);
+ glVertex3f(4.0, -25.0,-28.0);
+ glVertex3f(4.0, -20.0,-25.0);
+ glVertex3f(25.0,-20.0,-25.0);
+
+ glVertex3f(25.0,-25.0,-22.0);
+ glVertex3f(4.0, -25.0,-22.0);
+ glVertex3f(4.0, -20.0,-25.0);
+ glVertex3f(25.0,-20.0,-25.0);
+
+  glColor3f(0.7, 0.6,1.0);
+ glVertex3f(-2.5,-25.0,31.0);
+ glVertex3f(2.5, -25.0,31.0);
+ glVertex3f(2.5, -18.5,31.0);
+ glVertex3f(-2.5,-18.5,31.0);
+
+ glVertex3f(-2.5,-25.0,28.0);
+ glVertex3f(2.5, -25.0,28.0);
+ glVertex3f(2.5, -20.0,28.0);
+ glVertex3f(-2.5,-20.0,28.0);
+
+ glVertex3f(2.5, -25.0,31.0);
+ glVertex3f(2.5, -18.5,31.0);
+ glVertex3f(2.5, -20.0,28.0);
+ glVertex3f(2.5, -25.0,28.0);
+
+ glVertex3f(-2.5, -25.0,31.0);
+ glVertex3f(-2.5, -18.5,31.0);
+ glVertex3f(-2.5, -20.0,28.0);
+ glVertex3f(-2.5, -25.0,28.0);
+
+ glColor3f(1.0, 0.0,0.0);
+ glVertex3f(2.5, -18.5,31.0);
+ glVertex3f(-2.5,-18.5,31.0);
+ glVertex3f(-2.5, -20.0,28.0);
+ glVertex3f(2.5,-20.0,28.0);
+
+  glColor3f(1.0,1.0,1.0);
+ glVertex3f(-2.5,-18.5,31.0);
+ glVertex3f(2.5, -18.5,31.0);
+ glVertex3f(2.5, -16.5,31.0);
+ glVertex3f(-2.5,-16.5,31.0);
+ glVertex3f(2.5, -18.5,31.0);
+ glVertex3f(2.5, -16.5,31.0);
+ glVertex3f(2.5, -17.0,28.0);
+ glVertex3f(2.5, -20.5,28.0);
+ glVertex3f(-2.5, -18.5,31.0);
+ glVertex3f(-2.5, -16.5,31.0);
+ glVertex3f(-2.5, -17.0,28.0);
+ glVertex3f(-2.5, -20.5,28.0);
+
  glEnd();
+	
  glBegin(GL_LINE_LOOP);
  glColor3f(1.0, 1.0, 1.0);
-
  glVertex3f(-23.0,-25.0,23.0);
  glVertex3f(23.0, -25.0,23.0);
  glVertex3f(23.0, -25.0,-18.0);
@@ -3973,8 +4043,115 @@ void lapangan()
  glVertex3f(-25.0,-17.0,-6.0);
  glVertex3f(-25.0,-25.0,-6.0);
  glEnd();
+
 	
-	// update corn bola
+//kursi baru //update
+ glBegin(GL_QUADS);
+ glColor3f(0.0, 0.0, 0.0);
+ glVertex3f(5.0,-25.0,27.0);
+ glVertex3f(5.0, -22.0,27.0);
+ glVertex3f(8.0, -22.0,27.0);
+ glVertex3f(8.0,-25.0,27.0);
+ 
+ glVertex3f(5.0,-25.0,30.0);
+ glVertex3f(5.0, -19.0,30.0);
+ glVertex3f(8.0, -19.0,30.0);
+ glVertex3f(8.0,-25.0,30.0);
+ 
+ glVertex3f(5.0,-25.0,30.0);
+ glVertex3f(5.0, -22.0,30.0);
+ glVertex3f(5.0, -22.0,27.0);
+ glVertex3f(5.0,-25.0,27.0);
+ 
+ glVertex3f(8.0,-25.0,30.0);
+ glVertex3f(8.0, -22.0,30.0);
+ glVertex3f(8.0, -22.0,27.0);
+ glVertex3f(8.0,-25.0,27.0);
+ 
+ glColor3f(1.0, 0.5, 0.0);
+ glVertex3f(5.0,-22.0,30.0);
+ glVertex3f(8.0, -22.0,30.0);
+ glVertex3f(8.0, -22.0,27.0);
+ glVertex3f(5.0,-22.0,27.0);
+ glEnd();
+ 
+ glBegin(GL_QUADS);
+ glColor3f(0.0, 0.0, 0.0);
+ glVertex3f(10.0,-25.0,27.0);
+ glVertex3f(10.0, -22.0,27.0);
+ glVertex3f(13.0, -22.0,27.0);
+ glVertex3f(13.0,-25.0,27.0);
+ 
+ glVertex3f(10.0,-25.0,30.0);
+ glVertex3f(10.0, -19.0,30.0);
+ glVertex3f(13.0, -19.0,30.0);
+ glVertex3f(13.0,-25.0,30.0);
+ 
+ glVertex3f(10.0,-25.0,30.0);
+ glVertex3f(10.0, -22.0,30.0);
+ glVertex3f(10.0, -22.0,30.0);
+ glVertex3f(10.0,-25.0,30.0);
+ 
+ glVertex3f(13.0,-25.0,30.0);
+ glVertex3f(13.0, -22.0,30.0);
+ glVertex3f(13.0, -22.0,30.0);
+ glVertex3f(13.0,-25.0,30.0);
+ 
+ glColor3f(1.0, 0.5, 0.0);
+ glVertex3f(10.0,-22.0,30.0);
+ glVertex3f(13.0, -22.0,30.0);
+ glVertex3f(13.0, -22.0,27.0);
+ glVertex3f(10.0,-22.0,27.0);
+ glEnd();
+}
+
+void bendera(){
+ float xa1=20,ya1=20,xb1=30,yb1=30 ,xa2=20,ya2=30,xb2=30,yb2=20,xa3=25,ya3=20,xb3=25,yb3=30,xa4=30,ya4=25,xb4=20,yb4=25,Mab1,Mab2,Cab1,Cab2,Tx1,Ty1,Tx2,Ty2;
+ float z=55.0,z1=55.001;
+ Mab1= (yb1-ya1)/(xb1-xa1);
+ Cab1 = ya1-(Mab1*xa1);
+
+ Mab2 = (yb2-ya2)/(xb2-xa2);
+ Cab2 = ya2 -(Mab2*xa2);
+
+ Tx1= (Cab2-Cab1)/(Mab1-Mab2);
+ Ty1= (Mab1*Tx1)+Cab1;
+
+ Tx2= (Cab1-Cab2)/(Mab2-Mab1);
+ Ty2= (Mab2*Tx2)+Cab2;
+
+ glBegin (GL_QUADS);
+ glColor3f(0, 0,1);
+ glVertex3f(xa1,yb1,z);
+ glVertex3f(xa2,yb2,z);
+ glVertex3f(xb1,ya1,z);
+ glVertex3f(xb2,ya2,z);
+ glEnd ();
+  glBegin (GL_LINES);
+  glColor3f(1, 0, 0);
+  glVertex3f(xa1,ya1,z1);                //garis ab1
+  glVertex3f(xb1,yb1,z1);
+  glVertex3f(xa2,ya2,z1);                //garis ab2
+  glVertex3f(xb2,yb2,z1);
+  glVertex3f(xa3,ya3,z1);                //garis ab3
+  glVertex3f(xb3,yb3,z1);
+  glVertex3f(xa4,ya4,z1);                //garis ab4
+  glVertex3f(xb4,yb4,z1);
+  glEnd ();
+  glPointSize(6.0);
+  glBegin(GL_POINTS);
+  glColor3f(1, 1, 1);
+  glVertex3f(Tx1,Ty1,z1);         //titik Potong1
+  glColor3f(1, 1, 1);
+  glVertex3f(Tx2,Ty2,z1);         //titik Potong2
+  glColor3f(1, 1, 1);
+ //glVertex2f(Tx3,Ty3);         //titik Potong3
+ //glColor3f(1, 0, 0);
+ //glVertex2f(Tx4,Ty4);        //titik Potong4
+ glEnd();
+}
+
+void corn(){
 	glColor3f(1.0,0.0,0.0);
 	gluLookAt(10.0,-8.0,24.0, 0.0,60.0,25.0, 0.0,15.0,40.0);
 	
@@ -3989,9 +4166,10 @@ void lapangan()
 	gluLookAt(0.0,-10.0,0.0, 10.0,1000.0,10.0, 0.0,1000.0,4.0);
 	glutWireCone(1.0,5.0,100,10);
 	glFlush;
-
-
+	
+	//kursi
 }
+
 
 void reshape(int w, int h)
 {
@@ -4108,6 +4286,8 @@ void mouseMotion(int x, int y){
 	}
 	glLoadIdentity();
     gluLookAt(eye[0]+15, eye[1]+10, 50, at[0], at[1], 0, 0, 1, 0);
+// 	gluLookAt(eye[0]+10, eye[1], 40, at[0], at[1], 0, 0, 1, 0);
+//	gluLookAt(0.0f,0.0f,1.0f,0.0f,0.0f,0.0f,0.0f,1.0f,0.0f);
     glRotatef(xrot,1.0f,0.0f,0.0f);
 	glRotatef(yrot,0.0f,1.0f,0.0f);
 		eye[0] = 5;
