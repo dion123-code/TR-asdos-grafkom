@@ -3607,6 +3607,7 @@ void lapangan()
 	
  glBegin(GL_LINE_LOOP);
  glColor3f(1.0, 1.0, 1.0);
+	
  glVertex3f(-23.0,-25.0,23.0);
  glVertex3f(23.0, -25.0,23.0);
  glVertex3f(23.0, -25.0,-18.0);
